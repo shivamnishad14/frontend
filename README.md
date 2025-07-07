@@ -1,46 +1,208 @@
-# Getting Started with Create React App
+# HelpDesk Admin Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A professional admin dashboard for managing products and support tickets in a helpdesk system. Built with React, TypeScript, and shadcn/ui.
+
+## Features
+
+### 🎯 Core Features
+- **Product Management**: Add, edit, delete, and view products
+- **Dashboard**: Overview with key metrics and recent activity
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Modern UI**: Built with shadcn/ui components and Tailwind CSS
+
+### 🚀 Planned Features
+- **Ticket Management**: View, assign, and manage support tickets
+- **Knowledge Base**: Create and manage help articles
+- **User Management**: Assign admins and manage user permissions
+- **Analytics**: Product-specific metrics and reporting
+- **Authentication**: JWT-based login system
+- **Real-time Updates**: WebSocket integration for live updates
+
+## Tech Stack
+
+- **Frontend**: React 19 with TypeScript
+- **UI Library**: shadcn/ui components
+- **Styling**: Tailwind CSS
+- **Routing**: React Router v6
+- **State Management**: React Query (TanStack Query)
+- **HTTP Client**: Axios
+- **Icons**: Lucide React
+- **Forms**: React Hook Form + Yup validation
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd frontend
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+REACT_APP_API_URL=http://localhost:3001/api
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── ui/           # shadcn/ui components
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── dialog.tsx
+│   │   ├── input.tsx
+│   │   └── table.tsx
+│   └── layout/       # Layout components
+│       ├── Layout.tsx
+│       ├── Sidebar.tsx
+│       └── Header.tsx
+├── pages/            # Page components
+│   ├── Dashboard.tsx
+│   └── Products.tsx
+├── services/         # API services
+│   └── api.ts
+├── types/            # TypeScript interfaces
+│   └── index.ts
+├── lib/              # Utility functions
+│   └── utils.ts
+└── App.tsx           # Main app component
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm start` - Start development server
+- `npm build` - Build for production
+- `npm test` - Run tests
+- `npm eject` - Eject from Create React App
 
-### `npm start`
+## API Integration
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The frontend is designed to work with a RESTful API. The API service layer is already set up in `src/services/api.ts` with the following endpoints:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Products
+- `GET /api/products` - Get all products
+- `POST /api/products` - Create new product
+- `PUT /api/products/:id` - Update product
+- `DELETE /api/products/:id` - Delete product
 
-### `npm test`
+### Users
+- `GET /api/users` - Get all users
+- `POST /api/users` - Create new user
+- `PUT /api/users/:id` - Update user
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Tickets
+- `GET /api/tickets` - Get all tickets
+- `POST /api/tickets` - Create new ticket
+- `PUT /api/tickets/:id` - Update ticket
 
-### `npm run build`
+### Authentication
+- `POST /api/auth/login` - User login
+- `POST /api/auth/logout` - User logout
+- `GET /api/auth/me` - Get current user
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Component Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Using shadcn/ui Components
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```tsx
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 
-### `npm run eject`
+function MyComponent() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>My Card</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button>Click me</Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Adding New Pages
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Create a new component in `src/pages/`
+2. Add the route in `src/App.tsx`
+3. Add navigation item in `src/components/layout/Sidebar.tsx`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Styling
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The project uses Tailwind CSS with shadcn/ui design tokens. Custom styles can be added in `src/index.css`.
 
-## Learn More
+### Color Scheme
+- Primary: Blue (`blue-600`)
+- Secondary: Gray (`gray-600`)
+- Success: Green (`green-600`)
+- Warning: Orange (`orange-600`)
+- Error: Red (`red-600`)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Development
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Adding New shadcn/ui Components
+
+```bash
+npx shadcn@latest add [component-name]
+```
+
+### Code Style
+- Use TypeScript for all components
+- Follow React functional component patterns
+- Use React Query for data fetching
+- Implement proper error handling
+- Add loading states for better UX
+
+## Deployment
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+The build artifacts will be stored in the `build/` directory.
+
+### Environment Setup
+
+Make sure to set the correct `REACT_APP_API_URL` for your production environment.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Support
+
+For support and questions, please open an issue in the repository.
